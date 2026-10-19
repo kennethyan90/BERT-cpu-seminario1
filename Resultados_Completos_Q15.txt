@@ -1,0 +1,131 @@
+=====================================================================
+1. TABELA PRINCIPAL: VARREDURA D x K (3 SEEDS POR CONFIGURAÇÃO)
+=====================================================================
+configuration                 n             score   train GFLOP   infer MFLOP     params    s/run
+-------------------------------------------------------------------------------------------------
+D2_K2                         3   -0.0061 ± 0.0169          0.49           0.0      3,544     27.0
+D2_K5                         3   -0.0402 ± 0.0082          1.01           0.0      3,544     43.2
+D2_K10                        3   -0.0407 ± 0.0127          1.86           0.0      3,544     70.5
+D4_K2                         3    0.3728 ± 0.0378          0.68           0.0      7,088     30.9
+D4_K5                         3    0.3012 ± 0.1055          1.38           0.0      7,088     50.3
+D4_K10                        3    0.3316 ± 0.0493          2.54           0.0      7,088     82.2
+D8_K2                         3    0.3134 ± 0.0520          1.05           0.0     14,176     39.6
+D8_K5                         3    0.3025 ± 0.0365          2.12           0.0     14,176     63.4
+D8_K10                        3    0.3118 ± 0.0519          3.90           0.0     14,176    104.1
+D16_K2                        3    0.2373 ± 0.0227          1.79           0.0     28,352     56.2
+D16_K5                        3    0.2810 ± 0.0150          3.60           0.0     28,352     91.7
+D16_K10                       3    0.2902 ± 0.0297          6.62           0.0     28,352    151.5
+D32_K2                        3    0.1934 ± 0.0210          3.28           0.0     56,704     87.0
+D32_K5                        3    0.1636 ± 0.0215          6.57           0.0     56,704    143.5
+D32_K10                       3    0.1390 ± 0.0324         12.06           0.0     56,704    239.5
+D64_K2                        3    0.0782 ± 0.0198          6.25           0.0    113,408    152.6
+D64_K5                        3    0.0820 ± 0.0068         12.51           0.0    113,408    251.5
+D64_K10                       3    0.0933 ± 0.0255         22.95           0.0    113,408    421.7
+
+(deltas against 'D32_K5')
+  D2_K2                      -0.1698   (outside 1 sd)
+  D2_K5                      -0.2039   (outside 1 sd)
+  D2_K10                     -0.2044   (outside 1 sd)
+  D4_K2                      +0.2091   (outside 1 sd)
+  D4_K5                      +0.1376   (outside 1 sd)
+  D4_K10                     +0.1680   (outside 1 sd)
+  D8_K2                      +0.1498   (outside 1 sd)
+  D8_K5                      +0.1389   (outside 1 sd)
+  D8_K10                     +0.1482   (outside 1 sd)
+  D16_K2                     +0.0736   (outside 1 sd)
+  D16_K5                     +0.1173   (outside 1 sd)
+  D16_K10                    +0.1266   (outside 1 sd)
+  D32_K2                     +0.0298   (outside 1 sd)
+  D32_K10                    -0.0246   (within noise)
+  D64_K2                     -0.0854   (outside 1 sd)
+  D64_K5                     -0.0816   (outside 1 sd)
+  D64_K10                    -0.0704   (outside 1 sd)
+
+=====================================================================
+2. EFEITO DO WEIGHT TYING (REDUÇÃO DE 50% DOS PARÂMETROS LIVRES)
+=====================================================================
+configuration                 n             score   train GFLOP   infer MFLOP     params    s/run
+-------------------------------------------------------------------------------------------------
+D8_K2                         3    0.3134 ± 0.0520          1.05           0.0     14,176     39.6
+D8_K5                         3    0.3025 ± 0.0365          2.12           0.0     14,176     63.4
+D32_K2                        3    0.1934 ± 0.0210          3.28           0.0     56,704     87.0
+D32_K5                        3    0.1636 ± 0.0215          6.57           0.0     56,704    143.5
+D64_K2                        3    0.0782 ± 0.0198          6.25           0.0    113,408    152.6
+D64_K5                        3    0.0820 ± 0.0068         12.51           0.0    113,408    251.5
+D8_K2_tied                    3    0.2416 ± 0.0182          1.05           0.0     14,176     39.5
+D8_K5_tied                    3    0.2069 ± 0.0729          2.12           0.0     14,176     62.9
+D32_K2_tied                   3    0.1156 ± 0.0229          3.28           0.0     56,704     86.0
+D32_K5_tied                   3    0.0398 ± 0.0153          6.57           0.0     56,704    143.5
+D64_K2_tied                   3    0.0307 ± 0.0272          6.25           0.0    113,408    149.4
+D64_K5_tied                   3    0.0166 ± 0.0055         12.51           0.0    113,408    249.5
+
+(deltas against 'D32_K5')
+  D8_K2                      +0.1498   (outside 1 sd)
+  D8_K5                      +0.1389   (outside 1 sd)
+  D32_K2                     +0.0298   (outside 1 sd)
+  D64_K2                     -0.0854   (outside 1 sd)
+  D64_K5                     -0.0816   (outside 1 sd)
+  D8_K2_tied                 +0.0780   (outside 1 sd)
+  D8_K5_tied                 +0.0433   (within noise)
+  D32_K2_tied                -0.0480   (outside 1 sd)
+  D32_K5_tied                -0.1239   (outside 1 sd)
+  D64_K2_tied                -0.1329   (outside 1 sd)
+  D64_K5_tied                -0.1471   (outside 1 sd)
+
+=====================================================================
+3. SANITY CHECK: SILHUETA POR PALAVRA E VIZINHOS MAIS PRÓXIMOS
+=====================================================================
+--- Detalhamento por Palavra e Vizinhos: D2_K2 (seed=0, score=-0.0159) ---
+  Cluster 'shapes' (média = +0.623): triangle (+0.719), square (+0.789), pentagon (+0.808), hexagon (+0.461), circle (+0.196), polygon (+0.763)
+  Cluster 'people' (média = -0.724): women (-0.845), men (-0.847), man (-0.511), woman (-0.677), wife (-0.661), husband (-0.804)
+  Cluster 'space' (média = +0.054): dimension (+0.472), dimensions (-0.929), space (+0.520), plane (+0.534), solid (-0.729), line (+0.453)
+  Vizinhos mais próximos (Cosine Similarity):
+    square     -> non (+1.00), usual (+1.00), coming (+1.00), land (+1.00), day (+1.00)
+    circle     -> constantly (+1.00), all (+1.00), home (+1.00), crowd (+1.00), country (+1.00)
+    woman      -> found (+1.00), become (+1.00), inconceivable (+1.00), would (+1.00), ignorant (+1.00)
+    space      -> creature (+1.00), purpose (+1.00), bright (+1.00), person (+1.00), easily (+1.00)
+    line       -> utterance (+1.00), distinguish (+1.00), up (+1.00), upon (+1.00), there (+1.00)
+
+--- Detalhamento por Palavra e Vizinhos: D4_K2 (seed=0, score=+0.3966) ---
+  Cluster 'shapes' (média = +0.713): triangle (+0.825), square (+0.605), pentagon (+0.856), hexagon (+0.550), circle (+0.621), polygon (+0.823)
+  Cluster 'people' (média = -0.258): women (+0.093), men (-0.173), man (-0.868), woman (-0.674), wife (-0.234), husband (+0.310)
+  Cluster 'space' (média = +0.734): dimension (+0.816), dimensions (+0.657), space (+0.777), plane (+0.882), solid (+0.814), line (+0.459)
+  Vizinhos mais próximos (Cosine Similarity):
+    square     -> ab (+1.00), sides (+0.99), represented (+0.99), blessed (+0.99), brightness (+0.98)
+    circle     -> few (+1.00), true (+0.99), race (+0.99), dull (+0.98), hardly (+0.98)
+    woman      -> appear (+0.99), able (+0.99), nothing (+0.98), word (+0.98), just (+0.98)
+    space      -> somehow (+1.00), reality (+1.00), move (+0.99), merely (+0.99), wrong (+0.98)
+    line       -> straight (+1.00), cube (+1.00), fourth (+0.99), length (+0.98), itself (+0.98)
+
+--- Detalhamento por Palavra e Vizinhos: D8_K2 (seed=0, score=+0.3734) ---
+  Cluster 'shapes' (média = +0.610): triangle (+0.707), square (+0.471), pentagon (+0.790), hexagon (+0.309), circle (+0.688), polygon (+0.694)
+  Cluster 'people' (média = -0.027): women (-0.018), men (-0.029), man (-0.483), woman (-0.135), wife (+0.082), husband (+0.422)
+  Cluster 'space' (média = +0.537): dimension (+0.586), dimensions (+0.180), space (+0.712), plane (+0.664), solid (+0.638), line (+0.442)
+  Vizinhos mais próximos (Cosine Similarity):
+    square     -> itself (+0.93), hundred (+0.91), a (+0.90), cube (+0.90), inches (+0.88)
+    circle     -> sometimes (+0.97), few (+0.96), chief (+0.94), polygon (+0.89), pentagon (+0.89)
+    woman      -> always (+0.91), man (+0.89), turn (+0.85), mere (+0.85), lay (+0.84)
+    space      -> merely (+0.94), saw (+0.92), whom (+0.91), plane (+0.91), unrecognized (+0.90)
+    line       -> called (+0.96), straight (+0.93), length (+0.92), point (+0.92), cube (+0.88)
+
+--- Detalhamento por Palavra e Vizinhos: D32_K2 (seed=0, score=+0.2176) ---
+  Cluster 'shapes' (média = +0.305): triangle (+0.312), square (+0.306), pentagon (+0.357), hexagon (+0.212), circle (+0.303), polygon (+0.339)
+  Cluster 'people' (média = +0.079): women (+0.202), men (+0.103), man (-0.077), woman (-0.029), wife (+0.167), husband (+0.111)
+  Cluster 'space' (média = +0.269): dimension (+0.367), dimensions (+0.260), space (+0.292), plane (+0.136), solid (+0.296), line (+0.261)
+  Vizinhos mais próximos (Cosine Similarity):
+    square     -> sometimes (+0.63), sided (+0.60), pentagon (+0.60), point (+0.58), five (+0.57)
+    circle     -> chief (+0.70), irregular (+0.61), case (+0.60), polygon (+0.58), pentagon (+0.55)
+    woman      -> end (+0.58), turn (+0.57), imagine (+0.57), individual (+0.57), company (+0.56)
+    space      -> whence (+0.69), rising (+0.67), plane (+0.63), fool (+0.60), say (+0.59)
+    line       -> straight (+0.82), becomes (+0.65), appearance (+0.63), brightness (+0.61), containing (+0.60)
+
+--- Detalhamento por Palavra e Vizinhos: D64_K2 (seed=0, score=+0.0920) ---
+  Cluster 'shapes' (média = +0.129): triangle (+0.112), square (+0.097), pentagon (+0.202), hexagon (+0.111), circle (+0.114), polygon (+0.139)
+  Cluster 'people' (média = +0.028): women (+0.081), men (+0.161), man (-0.001), woman (-0.075), wife (+0.041), husband (-0.039)
+  Cluster 'space' (média = +0.119): dimension (+0.157), dimensions (+0.093), space (+0.128), plane (+0.107), solid (+0.162), line (+0.065)
+  Vizinhos mais próximos (Cosine Similarity):
+    square     -> five (+0.51), pentagon (+0.45), geometrical (+0.43), sided (+0.43), generally (+0.42)
+    circle     -> ever (+0.50), chief (+0.47), happened (+0.46), society (+0.45), mathematician (+0.44)
+    woman      -> reply (+0.46), lay (+0.46), vast (+0.44), she (+0.43), seen (+0.40)
+    space      -> things (+0.50), doors (+0.49), said (+0.47), conception (+0.44), fourth (+0.42)
+    line       -> straight (+0.61), visible (+0.46), becomes (+0.45), universe (+0.43), dull (+0.43)
